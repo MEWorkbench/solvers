@@ -1,0 +1,63 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>pt.uminho.ceb.biosystems.mew</groupId>
+  <artifactId>solvers</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>solvers</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>pt.uminho.ceb.biosystems.mew</groupId>
+      <artifactId>utilities</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>cplex</groupId>
+      <artifactId>cplex</artifactId>
+      <version>1.0.0</version>
+      <scope>system</scope>
+      <systemPath>/opt/ibm/ILOG/CPLEX_Studio125/cplex/lib/cplex.jar</systemPath>
+    </dependency>
+  </dependencies>
+  
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.3</version>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+  
+  <distributionManagement>
+	  <snapshotRepository>
+	    <id>HGRepSnap</id>
+	    <url>http://193.137.11.210:8081/nexus/content/repositories/HGRepSnap</url>
+	  </snapshotRepository>
+	  <repository>
+	    <id>HGRep</id>
+	    <url>http://193.137.11.210:8081/nexus/content/repositories/HGRep</url>
+	  </repository>
+  </distributionManagement>
+  
+</project>
