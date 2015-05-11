@@ -28,9 +28,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.GregorianCalendar;
 
-import pt.uminho.ceb.biosystems.mew.utilities.io.FileUtils;
-import pt.uminho.ceb.biosystems.mew.utilities.java.TimeUtils;
-
 import pt.uminho.ceb.biosystems.mew.solvers.SolverType;
 import pt.uminho.ceb.biosystems.mew.solvers.fileformats.LPInputFileFormat;
 import pt.uminho.ceb.biosystems.mew.solvers.fileformats.MPSInputFormat;
@@ -40,6 +37,8 @@ import pt.uminho.ceb.biosystems.mew.solvers.lp.exceptions.SolverConstructionExce
 import pt.uminho.ceb.biosystems.mew.solvers.lp.exceptions.SolverDefinitionException;
 import pt.uminho.ceb.biosystems.mew.solvers.parser.GeneralOutputSolverFile;
 import pt.uminho.ceb.biosystems.mew.solvers.parser.GeneralOutputUtils;
+import pt.uminho.ceb.biosystems.mew.utilities.io.FileUtils;
+import pt.uminho.ceb.biosystems.mew.utilities.java.TimeUtils;
 
 public class CLPLPSolver implements ILPSolver{
 

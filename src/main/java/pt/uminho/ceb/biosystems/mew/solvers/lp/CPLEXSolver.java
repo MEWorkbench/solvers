@@ -37,9 +37,6 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Set;
 
-import pt.uminho.ceb.biosystems.mew.utilities.io.FileUtils;
-import pt.uminho.ceb.biosystems.mew.utilities.java.TimeUtils;
-
 import pt.uminho.ceb.biosystems.mew.solvers.SolverType;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.exceptions.InfeasibleProblemException;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.exceptions.SolverConstructionException;
@@ -47,6 +44,8 @@ import pt.uminho.ceb.biosystems.mew.solvers.lp.exceptions.SolverDefinitionExcept
 import pt.uminho.ceb.biosystems.mew.solvers.lp.exceptions.SolverParametersException;
 import pt.uminho.ceb.biosystems.mew.solvers.qp.IQPSolver;
 import pt.uminho.ceb.biosystems.mew.solvers.qp.QPProblem;
+import pt.uminho.ceb.biosystems.mew.utilities.io.FileUtils;
+import pt.uminho.ceb.biosystems.mew.utilities.java.TimeUtils;
 
 /**
  * 
@@ -292,9 +291,11 @@ public class CPLEXSolver implements ILPSolver,IQPSolver{
 					cplexVar = cplex.boolVar(var.variableName);
 				else if(var.isInteger())
 					cplexVar = cplex.intVar((int)var.lowerBound, (int)var.upperBound, var.variableName);
-				else
+				else{
 	//				cplexVar = cplex.numVar(var.lowerBound, var.upperBound, IloNumVarType.Float, var.variableName);
-					cplexVar = cplex.numVar(var.lowerBound, var.upperBound, IloNumVarType.Float, "X"+i);	
+					cplexVar = cplex.numVar(var.lowerBound, var.upperBound, IloNumVarType.Float, "X"+i);
+//					System.out.println("X"+i+"\t=\t"+var.getVariableName());
+				}
 				
 			} catch (Exception e) {
 				throw new SolverConstructionException(CPLEXSolver.class);
@@ -404,6 +405,7 @@ public class CPLEXSolver implements ILPSolver,IQPSolver{
 			LPVariable var = qpProblem.getVariables().get(i);
 			try {
 				variables[i] = cplex.numVar(var.lowerBound, var.upperBound,IloNumVarType.Float);
+//				System.out.println("X"+i+"\t=\t"+var.getVariableName());
 			} catch (Exception e) {
 				throw new SolverConstructionException(CPLEXSolver.class);
 			}

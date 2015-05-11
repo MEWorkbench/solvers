@@ -33,11 +33,14 @@ import pt.uminho.ceb.biosystems.mew.solvers.fileformats.OutputFileUtils;
 import pt.uminho.ceb.biosystems.mew.solvers.fileformats.QuadraticMPSInputFileProcessor;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.LPMapVariableValues;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.LPSolution;
+import pt.uminho.ceb.biosystems.mew.solvers.lp.SolverException;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.exceptions.InfeasibleProblemException;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.exceptions.SolverConstructionException;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.exceptions.SolverDefinitionException;
 import pt.uminho.ceb.biosystems.mew.solvers.parser.GeneralOutputSolverFile;
 import pt.uminho.ceb.biosystems.mew.solvers.parser.GeneralOutputUtils;
+import pt.uminho.ceb.biosystems.mew.utilities.io.FileUtils;
+import pt.uminho.ceb.biosystems.mew.utilities.java.TimeUtils;
 
 public class CLPQPSolver implements IQPSolver {
 
@@ -161,5 +164,26 @@ public class CLPQPSolver implements IQPSolver {
 	@Override
 	public void setQPProblem(QPProblem problem) {
 		this.qpproblem = problem;	
+	}
+	
+	@Override
+	public void saveModelToMPS(String file, boolean includeTime) {
+		if (qpproblem != null) {
+			if (includeTime) {
+				String extension = FileUtils.getFileExtension(file);
+				String time = TimeUtils.formatMillis(System.currentTimeMillis());
+				file = file.replaceFirst(extension, "") + "_" + time + "." + extension;
+			}
+			
+			QuadraticMPSInputFileProcessor inputFileProcessor = new QuadraticMPSInputFileProcessor(qpproblem);
+			
+			try {
+				inputFileProcessor.writeLPFile(file);
+			} catch (IOException e) {
+				throw new SolverException(getClass(), e);
+			}
+		} else {
+			throw new SolverException(getClass(), new Exception("Problem is null. Impossible to write MPS file."));
+		}
 	}
 }

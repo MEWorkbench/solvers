@@ -204,8 +204,9 @@ public class CplexParamConfiguration {
 		for (String id : booleanParam.keySet()) {
 			Boolean objValue = booleanParam.get(id);			
 			String value = null;
+
 			if(_debug) System.out.println("setting CPLEX param ["+id+"]="+objValue);
-			
+
 			try {
 				BooleanParam param = (BooleanParam) BooleanParam.class.getDeclaredField(id).get(null);
 				try {

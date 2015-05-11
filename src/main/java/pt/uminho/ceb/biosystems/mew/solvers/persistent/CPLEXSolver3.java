@@ -38,9 +38,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import pt.uminho.ceb.biosystems.mew.utilities.io.FileUtils;
-import pt.uminho.ceb.biosystems.mew.utilities.java.TimeUtils;
-
 import pt.uminho.ceb.biosystems.mew.solvers.SolverType;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.CplexParamConfiguration;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.ILPSolver;
@@ -72,8 +69,9 @@ import pt.uminho.ceb.biosystems.mew.solvers.persistent.listener.ObjectiveFunctio
 import pt.uminho.ceb.biosystems.mew.solvers.persistent.listener.ObjectiveSenseChangedEvent;
 import pt.uminho.ceb.biosystems.mew.solvers.qp.IQPSolver;
 import pt.uminho.ceb.biosystems.mew.solvers.qp.QPProblem;
-
-// import org.optflux.solvers.lp.exceptions.CplexParamTypeException;
+import pt.uminho.ceb.biosystems.mew.utilities.io.FileUtils;
+import pt.uminho.ceb.biosystems.mew.utilities.java.TimeUtils;
+// import solvers.lp.exceptions.CplexParamTypeException;
 
 /**
  * CPLEX connector using a persistent model for improved performance.
@@ -207,8 +205,10 @@ public class CPLEXSolver3 implements LPProblemListener, ILPSolver, IQPSolver {
 					cplexVar = cplex.boolVar(var.variableName);
 				else if (var.isInteger())
 					cplexVar = cplex.intVar((int) var.lowerBound, (int) var.upperBound, var.variableName);
-				else
+				else{
 					cplexVar = cplex.numVar(var.lowerBound, var.upperBound, IloNumVarType.Float, "X" + i);
+//					System.out.println("X"+i+"\t=\t"+var.getVariableName());
+				}
 				
 			} catch (Exception e) {
 				throw new SolverConstructionException(getClass(), e);
@@ -330,6 +330,7 @@ public class CPLEXSolver3 implements LPProblemListener, ILPSolver, IQPSolver {
 			LPVariable var = _qpProblem.getVariables().get(i);
 			try {
 				_variables.add(i, cplex.numVar(var.lowerBound, var.upperBound, IloNumVarType.Float));
+//				System.out.println("X"+i+"\t=\t"+var.getVariableName());
 			} catch (Exception e) {
 				throw new SolverConstructionException(getClass(), e);
 			}

@@ -26,9 +26,6 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import pt.uminho.ceb.biosystems.mew.utilities.io.FileUtils;
-import pt.uminho.ceb.biosystems.mew.utilities.java.TimeUtils;
-
 import pt.uminho.ceb.biosystems.mew.solvers.SolverType;
 import pt.uminho.ceb.biosystems.mew.solvers.fileformats.LPFormatTypes;
 import pt.uminho.ceb.biosystems.mew.solvers.fileformats.LPInputFileFormat;
@@ -38,6 +35,8 @@ import pt.uminho.ceb.biosystems.mew.solvers.lp.exceptions.InfeasibleProblemExcep
 import pt.uminho.ceb.biosystems.mew.solvers.lp.exceptions.SolverDefinitionException;
 import pt.uminho.ceb.biosystems.mew.solvers.parser.GeneralOutputSolverFile;
 import pt.uminho.ceb.biosystems.mew.solvers.parser.GeneralOutputUtils;
+import pt.uminho.ceb.biosystems.mew.utilities.io.FileUtils;
+import pt.uminho.ceb.biosystems.mew.utilities.java.TimeUtils;
 
 public class GLPKSolver implements ILPSolver {
 	

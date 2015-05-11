@@ -32,4 +32,6 @@ public interface IQPSolver{
 	LPSolution solve() throws SolverException ;
 	
 	String getSolverOutput();
+	
+	void saveModelToMPS(String file, boolean includeTime);
 }
