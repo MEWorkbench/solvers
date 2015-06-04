@@ -31,8 +31,17 @@
       <artifactId>cplex</artifactId>
       <version>1.0.0</version>
       <scope>system</scope>
+      <!-- Change the following line to the cplex.jar path from your machine -->
       <systemPath>/opt/ibm/ILOG/CPLEX_Studio125/cplex/lib/cplex.jar</systemPath>
     </dependency>
+    <!-- The following dependency should only be used if you do not have a cplex in your machine
+    Do not forget to uncomment the repository. 
+    <dependency>
+	  <groupId>com.ibm</groupId>
+	  <artifactId>cplex</artifactId>
+	  <version>1.0.0</version>
+	</dependency>
+	-->
   </dependencies>
   
   <build>
@@ -78,6 +87,12 @@
 	    <id>biosystems-releases</id>
 	    <url>http://193.137.11.210/nexus/content/repositories/biosystems-releases</url>
   	</repository>
+  	<!-- Remove comment if you do not have the cplex.jar in your machine  
+  	<repository>
+	    <id>hgthirdparty</id>
+	    <url>http://193.137.11.210/nexus/content/repositories/hgthirdparty</url>
+	  </repository>
+	-->
   </repositories>
   
   <distributionManagement>
