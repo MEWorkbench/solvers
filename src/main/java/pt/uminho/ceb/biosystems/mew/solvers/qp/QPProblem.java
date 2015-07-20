@@ -63,7 +63,7 @@ public class QPProblem extends LPProblem implements IQPObjectiveFunctionPersiste
 	
 	private void fireQPObjectiveFunctionChanged() {
 		ObjectiveFunctionChangedEvent evt = new ObjectiveFunctionChangedEvent(this);
-		for (LPProblemListener listener : _listeners)
-			listener.updateObjectiveFunction(evt);
+//		for (LPProblemListener listener : _listeners)
+		if(_listener!=null) _listener.updateObjectiveFunction(evt);
 	}
 }

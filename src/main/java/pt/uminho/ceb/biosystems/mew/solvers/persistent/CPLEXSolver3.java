@@ -158,10 +158,12 @@ public class CPLEXSolver3 implements LPProblemListener, ILPSolver, IQPSolver {
 		}
 		
 		if (_isQPproblem) {
-			((QPProblem) _qpProblem).addLPProblemListener(this);
+//			((QPProblem) _qpProblem).addLPProblemListener(this);
+			((QPProblem) _qpProblem).setListener(this);
 			if (_debug) System.out.println("Added QPProblemListener");
 		} else {
-			((LPProblem) _lpProblem).addLPProblemListener(this);
+//			((LPProblem) _lpProblem).addLPProblemListener(this);
+			((LPProblem) _lpProblem).setListener(this);
 			if (_debug) System.out.println("Added LPProblemListener");
 		}
 		
@@ -1008,7 +1010,25 @@ public class CPLEXSolver3 implements LPProblemListener, ILPSolver, IQPSolver {
 	}
 	
 	public void finalize() throws Throwable {
-		if (_cplex != null) _cplex.end();
+		if (_cplex != null) {
+			if(_lpProblem!=null){
+//				_lpProblem.removeLPProblemListener(this);
+				_lpProblem.removeListener();
+//				_lpProblem = null;
+			}
+			if(_qpProblem!=null){
+//				_qpProblem.removeLPProblemListener(this);
+				_qpProblem.removeListener();
+//				_qpProblem = null;
+			}
+//			_constraints = null;
+//			_variables = null;
+//			_objectiveFunction = null;
+//			_mapLPconstToCPLEXconst = null;
+//			_mapLPvarToCPLEXvar = null;
+			_cplex.end();
+//			_cplex = null;
+		}
 		super.finalize();
 	}
 	
