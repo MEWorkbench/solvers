@@ -31,8 +31,17 @@
       <artifactId>cplex</artifactId>
       <version>1.0.0</version>
       <scope>system</scope>
+      <!-- Change the following line to the cplex.jar path from your machine -->
       <systemPath>/opt/ibm/ILOG/CPLEX_Studio125/cplex/lib/cplex.jar</systemPath>
     </dependency>
+    <!-- The following dependency should only be used if you do not have a cplex in your machine
+    Do not forget to uncomment the repository. 
+    <dependency>
+	  <groupId>com.ibm</groupId>
+	  <artifactId>cplex</artifactId>
+	  <version>1.0.0</version>
+	</dependency>
+	-->
   </dependencies>
   
   <build>
@@ -46,18 +55,55 @@
           <target>1.7</target>
         </configuration>
       </plugin>
+      <plugin>
+		 <groupId>org.apache.maven.plugins</groupId>
+		 <artifactId>maven-source-plugin</artifactId>
+		 <executions>
+		   <execution>
+		     <id>attach-sources</id>
+		     <goals>
+		       <goal>jar</goal>
+		     </goals>
+		   </execution>
+		 </executions>
+	  </plugin>
+      <plugin>
+		  <groupId>org.apache.maven.plugins</groupId>
+		  <artifactId>maven-javadoc-plugin</artifactId>
+		  <executions>
+		    <execution>
+		      <id>attach-javadocs</id>
+		      <goals>
+		        <goal>jar</goal>
+		      </goals>
+		    </execution>
+		  </executions>
+		</plugin>
     </plugins>
   </build>
   
-  <distributionManagement>
-	  <snapshotRepository>
-	    <id>HGRepSnap</id>
-	    <url>http://193.137.11.210:8081/nexus/content/repositories/HGRepSnap</url>
-	  </snapshotRepository>
-	  <repository>
-	    <id>HGRep</id>
-	    <url>http://193.137.11.210:8081/nexus/content/repositories/HGRep</url>
+  <repositories>
+  	<repository>
+	    <id>biosystems-releases</id>
+	    <url>http://193.137.11.210/nexus/content/repositories/biosystems-releases</url>
+  	</repository>
+  	<!-- Remove comment if you do not have the cplex.jar in your machine  
+  	<repository>
+	    <id>hgthirdparty</id>
+	    <url>http://193.137.11.210/nexus/content/repositories/hgthirdparty</url>
 	  </repository>
+	-->
+  </repositories>
+  
+  <distributionManagement>
+  	<snapshotRepository>
+	    <id>biosystems-snapshots</id>
+	    <url>http://193.137.11.210/nexus/content/repositories/biosystems-snapshots</url>
+	</snapshotRepository>
+	<repository>
+	    <id>biosystems-releases</id>
+		<url>http://193.137.11.210/nexus/content/repositories/biosystems-releases</url>
+	</repository>
   </distributionManagement>
   
 </project>
