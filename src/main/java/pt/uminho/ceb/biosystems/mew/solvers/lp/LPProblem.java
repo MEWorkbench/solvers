@@ -20,9 +20,8 @@ package pt.uminho.ceb.biosystems.mew.solvers.lp;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 import pt.uminho.ceb.biosystems.mew.solvers.lp.exceptions.LinearProgrammingTermAlreadyPresentException;
 import pt.uminho.ceb.biosystems.mew.solvers.persistent.listener.LPConstraintAddedEvent;
@@ -48,24 +47,22 @@ import pt.uminho.ceb.biosystems.mew.solvers.persistent.listener.ObjectiveSenseCh
  */
 public class LPProblem implements Serializable {
 	
-	private static final long			serialVersionUID	= 1L;
+	private static final long								serialVersionUID	= 1L;
 	
 	/** Debug flag */
-	protected static final boolean		_debug				= false;
+	protected static final boolean							_debug				= false;
 	
 	/** Listeners of this <code>LPProblem</code> instance */
-	//	protected final CopyOnWriteArrayList<LPProblemListener>	_listeners;
-	//	protected final List<LPProblemListener>	_listeners;
-	protected  LPProblemListener	_listener;
+	protected final CopyOnWriteArrayList<LPProblemListener>	_listeners;
 	
 	/** The list of <code>LPVarible</code> in the problem */
-	public List<LPVariable>				_variables;
+	public List<LPVariable>									_variables;
 	
 	/** The list of <code>LPConstraint</code> in the problem */
-	public List<LPConstraint>			_constraints;
+	public List<LPConstraint>								_constraints;
 	
 	/** The <code>LPObjectiveFunction</code> defined for this problem */
-	public LPObjectiveFunction			_objectiveFunction	= null;
+	public LPObjectiveFunction								_objectiveFunction	= null;
 	
 	/**
 	 * Default empty constructor
@@ -73,8 +70,7 @@ public class LPProblem implements Serializable {
 	public LPProblem() {
 		_variables = new ArrayList<LPVariable>();
 		_constraints = new ArrayList<LPConstraint>();
-		//		_listeners = new CopyOnWriteArrayList<LPProblemListener>();
-//		_listeners = new ArrayList<LPProblemListener>();
+		_listeners = new CopyOnWriteArrayList<LPProblemListener>();
 	}
 	
 	public synchronized void addVariable(LPVariable variable) {
@@ -192,20 +188,12 @@ public class LPProblem implements Serializable {
 		this._objectiveFunction = objectiveFunction;
 	}
 	
-//	public void addLPProblemListener(LPProblemListener listener) {
-//		_listeners.add(listener);
-//	}
-//	
-//	public void removeLPProblemListener(LPProblemListener listener) {
-//		_listeners.remove(listener);
-//	}
-	
-	public void setListener(LPProblemListener listener){
-		_listener = listener;
+	public void addLPProblemListener(LPProblemListener listener) {
+		_listeners.add(listener);
 	}
 	
-	public void removeListener(){
-		_listener = null;
+	public void removeLPProblemListener(LPProblemListener listener) {
+		_listeners.remove(listener);
 	}
 	
 	public synchronized void changeVariableBounds(int index, double lower, double upper) {
@@ -230,74 +218,74 @@ public class LPProblem implements Serializable {
 	
 	private void fireVariableChanged(LPVariable var) {
 		LPVariableChangedEvent evt = new LPVariableChangedEvent(this, var);
-//		for (LPProblemListener listener : _listeners)
-			if(_listener!=null) _listener.updateLPProblemVariable(evt);
+		for (LPProblemListener listener : _listeners)
+			listener.updateLPProblemVariable(evt);
 	}
 	
 	private void fireConstraintChanged(LPConstraint lpConstraint) {
 		LPConstraintChangedEvent evt = new LPConstraintChangedEvent(this, lpConstraint);
-//		for (LPProblemListener listener : _listeners)
-		if(_listener!=null) _listener.updateLPProblemConstraint(evt);
+		for (LPProblemListener listener : _listeners)
+			listener.updateLPProblemConstraint(evt);
 	}
 	
 	private void fireLPObjectiveFunctionChanged() {
 		ObjectiveFunctionChangedEvent evt = new ObjectiveFunctionChangedEvent(this);
-//		for (LPProblemListener listener : _listeners)
-		if(_listener!=null) _listener.updateObjectiveFunction(evt);
+		for (LPProblemListener listener : _listeners)
+			listener.updateObjectiveFunction(evt);
 	}
 	
 	private void fireObjectiveSenseChanged(boolean isMaximization) {
 		ObjectiveSenseChangedEvent evt = new ObjectiveSenseChangedEvent(this, isMaximization);
-//		for (LPProblemListener listener : _listeners)
-		if(_listener!=null) _listener.updateObjectiveSense(evt);
+		for (LPProblemListener listener : _listeners)
+			listener.updateObjectiveSense(evt);
 	}
 	
 	private void fireVariableAddedEvent(LPVariable variable) {
 		LPVariableAddedEvent evt = new LPVariableAddedEvent(this, variable);
-//		for (LPProblemListener listener : _listeners)
-		if(_listener!=null) _listener.addLPVariable(evt);
+		for (LPProblemListener listener : _listeners)
+			listener.addLPVariable(evt);
 	}
 	
 	private void fireVariableAddedAtEvent(LPVariable variable, Integer index) {
 		LPVariableAddedEvent evt = new LPVariableAddedEvent(this, variable, index);
-//		for (LPProblemListener listener : _listeners)
-		if(_listener!=null) _listener.addLPVariable(evt);
+		for (LPProblemListener listener : _listeners)
+			listener.addLPVariable(evt);
 	}
 	
 	private void fireConstraintAddedEvent(LPConstraint constraint) {
 		LPConstraintAddedEvent evt = new LPConstraintAddedEvent(this, constraint);
-//		for (LPProblemListener listener : _listeners)
-		if(_listener!=null) _listener.addLPConstraint(evt);
+		for (LPProblemListener listener : _listeners)
+			listener.addLPConstraint(evt);
 	}
 	
 	private void fireVariableRemovedEvent(LPVariable variable) {
 		LPVariableRemovedEvent evt = new LPVariableRemovedEvent(this, variable);
-//		for (LPProblemListener listener : _listeners)
-		if(_listener!=null) _listener.removeLPVariable(evt);
+		for (LPProblemListener listener : _listeners)
+			listener.removeLPVariable(evt);
 	}
 	
 	private void fireConstraintRemovedEvent(LPConstraint constraint) {
 		LPConstraintRemovedEvent evt = new LPConstraintRemovedEvent(this, constraint);
-//		for (LPProblemListener listener : _listeners)
-		if(_listener!=null) _listener.removeLPConstraint(evt);
+		for (LPProblemListener listener : _listeners)
+			listener.removeLPConstraint(evt);
 	}
 	
 	private void fireConstraintReplacedEvent(LPConstraint oldConstraint, LPConstraint newConstraint) {
 		LPConstraintReplacedEvent evt = new LPConstraintReplacedEvent(this, oldConstraint, newConstraint);
-//		for (LPProblemListener listener : _listeners)
-		if(_listener!=null) _listener.replaceLPConstraint(evt);
+		for (LPProblemListener listener : _listeners)
+			listener.replaceLPConstraint(evt);
 	}
 	
 	private void fireVariableRangeRemoved(List<LPVariable> variables) {
 		LPVariableRangeRemovedEvent evt = new LPVariableRangeRemovedEvent(this, variables);
-//		for (LPProblemListener listener : _listeners)
-		if(_listener!=null) _listener.removeLPVariableRange(evt);
+		for (LPProblemListener listener : _listeners)
+			listener.removeLPVariableRange(evt);
 	}
 	
 	private void fireConstraintRangeRemoved(List<LPConstraint> constraints) {
 		LPConstraintRangeRemovedEvent evt = new LPConstraintRangeRemovedEvent(this, constraints);
-//		for (LPProblemListener listener : _listeners)
-		if(_listener!=null) _listener.removeLPConstraintRange(evt);
+		for (LPProblemListener listener : _listeners)
+			listener.removeLPConstraintRange(evt);
 	}
 	
 }
