@@ -550,6 +550,7 @@ public class CPLEXSolver3 implements LPProblemListener, ILPSolver, IQPSolver {
 		PrintStream aux = new PrintStream(baos);
 		_cplex.setOut(aux);
 		
+		
 		// solve the problem
 		try {
 			_cplex.solve();
@@ -1008,7 +1009,18 @@ public class CPLEXSolver3 implements LPProblemListener, ILPSolver, IQPSolver {
 	}
 	
 	public void finalize() throws Throwable {
-		if (_cplex != null) _cplex.end();
+		
+		if (_cplex != null) {
+			if(_lpProblem!=null){
+				_lpProblem.removeLPProblemListener(this);
+				_lpProblem = null;
+			}
+			if(_qpProblem!=null){
+				_qpProblem.removeLPProblemListener(this);
+				_qpProblem = null;
+			}			
+			_cplex.end();
+		}
 		super.finalize();
 	}
 	
