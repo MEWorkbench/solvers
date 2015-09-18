@@ -30,7 +30,10 @@ public class OutputFileUtils {
 		ret.setHeaderColumnInfo(3);
 		ret.setColumnsInColumnInfo(7);
 		if(MILPProblem.class.isAssignableFrom(problem.getClass())){
-			ret.setRegExpDataColumnsInfo("\\s+(\\d+)\\s+([^\\s]+)\\s+([^\\s]+)\\s+([^\\s]+)?\\s+([^\\s]+)?\\s+(< eps|[^\\s]+)?\\s*");
+			ret.setRegExpDataColumnsInfo("\\s*(\\d+)\\s+(\\w+)\\s+(?:\\*?)\\s+([^\\s]+).*");
+			// OLD REGEXP
+//			ret.setRegExpDataColumnsInfo("\\s+(\\d+)\\s+([^\\s]+)\\s+(?:\\*)?(?:[^\\s]+)?\\s+([^\\s]+)\\s+([^\\s]+)?\\s+([^\\s]+)?\\s+(?:< eps|[^\\s]+)?\\s*");
+//			ret.setRegExpDataColumnsInfo("\\s+(\\d+)\\s+([^\\s]+)\\s+([^\\s]+)\\s+([^\\s]+)?\\s+([^\\s]+)?\\s+(< eps|[^\\s]+)?\\s*");
 		}else
 			ret.setRegExpDataColumnsInfo("\\s+(\\d+)\\s+([^\\s]+)\\s+([^\\s]+)?\\s+([^\\s]+)\\s+([^\\s]+)?\\s+([^\\s]+)?\\s+(< eps|[^\\s]+)?\\s*");
 		
