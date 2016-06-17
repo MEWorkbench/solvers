@@ -1,89 +1,89 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <groupId>pt.uminho.ceb.biosystems.mew</groupId>
-  <artifactId>mew-solvers</artifactId>
-  <version>0.0.2-SNAPSHOT</version>
-  <packaging>jar</packaging>
+	<groupId>pt.uminho.ceb.biosystems.mew</groupId>
+	<artifactId>mew-solvers</artifactId>
+	<version>0.0.2-SNAPSHOT</version>
+	<packaging>jar</packaging>
 
-  <name>solvers</name>
-  <url>http://maven.apache.org</url>
+	<name>solvers</name>
+	<url>http://maven.apache.org</url>
 
-  <properties>
+	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
 	</properties>
 
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>pt.uminho.ceb.biosystems.mew</groupId>
-      <artifactId>mew-utilities</artifactId>
-      <version>0.0.2-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-	  <groupId>com.ibm.ilog</groupId>
-	  <artifactId>cplex</artifactId>
-	  <version>1.2.5</version>
-	</dependency>
-  </dependencies>
-  
-  <build>
-    <plugins>
-      <plugin>
-		 <groupId>org.apache.maven.plugins</groupId>
-		 <artifactId>maven-source-plugin</artifactId>
-		 <executions>
-		   <execution>
-		     <id>attach-sources</id>
-		     <goals>
-		       <goal>jar</goal>
-		     </goals>
-		   </execution>
-		 </executions>
-	  </plugin>
-      <plugin>
-		  <groupId>org.apache.maven.plugins</groupId>
-		  <artifactId>maven-javadoc-plugin</artifactId>
-		  <executions>
-		    <execution>
-		      <id>attach-javadocs</id>
-		      <goals>
-		        <goal>jar</goal>
-		      </goals>
-		    </execution>
-		  </executions>
-		</plugin>
-    </plugins>
-  </build>
-  
-  <repositories>
-  	<repository>
-	    <id>biosystems-releases</id>
-	    <url>http://193.137.11.210/nexus/content/repositories/biosystems-releases</url>
-  	</repository>
-  	<repository>
-	    <id>3rd-party</id>
-	    <url>http://193.137.11.210/nexus/content/repositories/thirdparty</url>
-	  </repository>
-  </repositories>
-  
-  <distributionManagement>
-  	<snapshotRepository>
-	    <id>biosystems-snapshots</id>
-	    <url>http://193.137.11.210/nexus/content/repositories/biosystems-snapshots</url>
-	</snapshotRepository>
-	<repository>
-	    <id>biosystems-releases</id>
-		<url>http://193.137.11.210/nexus/content/repositories/biosystems-releases</url>
-	</repository>
-  </distributionManagement>
-  
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>pt.uminho.ceb.biosystems.mew</groupId>
+			<artifactId>mew-utilities</artifactId>
+			<version>0.0.2-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>com.ibm.ilog</groupId>
+			<artifactId>cplex</artifactId>
+			<version>1.2.5</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>biosystems-releases</id>
+			<url>http://193.137.11.210/nexus/content/repositories/biosystems-releases</url>
+		</repository>
+		<repository>
+			<id>3rd-party</id>
+			<url>http://193.137.11.210/nexus/content/repositories/thirdparty</url>
+		</repository>
+	</repositories>
+
+	<distributionManagement>
+		<snapshotRepository>
+			<id>biosystems-snapshots</id>
+			<url>http://193.137.11.210/nexus/content/repositories/biosystems-snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>biosystems-releases</id>
+			<url>http://193.137.11.210/nexus/content/repositories/biosystems-releases</url>
+		</repository>
+	</distributionManagement>
+
 </project>
