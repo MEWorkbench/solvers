@@ -103,7 +103,6 @@ public class LPProblem implements Serializable {
 		fireConstraintAddedEvent(constraint);
 	}
 	
-	
 	public void addConstraint(LPProblemRow row, LPConstraintType type, double rigthValue) {
 		LPConstraint constraint = new LPConstraint(type, row, rigthValue);
 		addConstraint(constraint);
@@ -118,7 +117,6 @@ public class LPProblem implements Serializable {
 		addConstraint(row, type, rightValue);
 	}
 	
-	
 	public synchronized void removeConstraint(LPConstraint constraint) {
 		_constraints.remove(constraint);
 		fireConstraintRemovedEvent(constraint);
@@ -129,10 +127,10 @@ public class LPProblem implements Serializable {
 		fireConstraintRangeRemoved(constraints);
 	}
 	
-	public void replaceConstraint(LPConstraint oldConstraint, LPConstraint newConstraint){
+	public void replaceConstraint(LPConstraint oldConstraint, LPConstraint newConstraint) {
 		int index = _constraints.indexOf(oldConstraint);
 		_constraints.set(index, newConstraint);
-		fireConstraintReplacedEvent(oldConstraint,newConstraint);
+		fireConstraintReplacedEvent(oldConstraint, newConstraint);
 	}
 	
 	public LPObjectiveFunction getObjectiveFunction() {
@@ -272,9 +270,9 @@ public class LPProblem implements Serializable {
 			listener.removeLPConstraint(evt);
 	}
 	
-	private void fireConstraintReplacedEvent(LPConstraint oldConstraint, LPConstraint newConstraint){
+	private void fireConstraintReplacedEvent(LPConstraint oldConstraint, LPConstraint newConstraint) {
 		LPConstraintReplacedEvent evt = new LPConstraintReplacedEvent(this, oldConstraint, newConstraint);
-		for(LPProblemListener listener : _listeners)
+		for (LPProblemListener listener : _listeners)
 			listener.replaceLPConstraint(evt);
 	}
 	
