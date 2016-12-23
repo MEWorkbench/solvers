@@ -23,6 +23,7 @@
 package pt.uminho.ceb.biosystems.mew.solvers.lp;
 
 import java.io.Serializable;
+import java.util.Map;
 
 // This class keeps a term constant*LPvariable
 public class LPTerm implements Serializable{
@@ -51,6 +52,10 @@ public class LPTerm implements Serializable{
 	
 	public String toString(){
 		return variableIndex + "*" + coefficientValue; 
+	}
+	
+	public String toStringWithNames(Map<Integer,String> indexToIdVarMappings){
+		return coefficientValue + "*" + indexToIdVarMappings.get(variableIndex);
 	}
 	
 	public LPTerm clone(){

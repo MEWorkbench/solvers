@@ -19,6 +19,7 @@
 package pt.uminho.ceb.biosystems.mew.solvers.lp;
 
 import java.io.Serializable;
+import java.util.Map;
 
 import pt.uminho.ceb.biosystems.mew.solvers.lp.exceptions.LinearProgrammingTermAlreadyPresentException;
 
@@ -66,5 +67,9 @@ public class LPObjectiveFunction implements Serializable {
 	
 	public String toString(){
 		return ((maximization) ? "maximize" : "minimize") + "\t" + row.toString() ;
+	}
+	
+	public String toStringWithNames(Map<Integer,String> indexToIdVarMappings){
+		return ((maximization) ? "max" : "min") + "\t" + row.toStringWithNames(indexToIdVarMappings);
 	}
 }

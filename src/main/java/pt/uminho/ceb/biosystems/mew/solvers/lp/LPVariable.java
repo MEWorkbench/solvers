@@ -97,7 +97,7 @@ public class LPVariable implements Serializable{
 	}
 	
 	public String toString(){
-		return variableName + "["+lowerBound+","+upperBound+"]";
+		return variableName + "\t["+lowerBound+","+upperBound+"]";
 	}
 	
 	public LPVariableType getVariableType() {

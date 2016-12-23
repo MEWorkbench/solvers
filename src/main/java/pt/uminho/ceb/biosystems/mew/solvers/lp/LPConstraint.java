@@ -23,6 +23,7 @@
 package pt.uminho.ceb.biosystems.mew.solvers.lp;
 
 import java.io.Serializable;
+import java.util.Map;
 
 public class LPConstraint implements Serializable{
 	
@@ -83,6 +84,24 @@ public class LPConstraint implements Serializable{
 				break;
 		}
 		return leftSide.toString() + operator + rightSide;
+	}
+	
+	public String toStringWithNames(Map<Integer,String> indexToIdVarMappings){
+		String operator ="";
+		switch (type) {
+			case EQUALITY:
+				operator = " = ";
+				break;
+			case GREATER_THAN:
+				operator = " >= ";
+				break;
+			case LESS_THAN:
+				operator = " <= ";
+				break;
+			default:
+				break;
+		}
+		return leftSide.toStringWithNames(indexToIdVarMappings) + operator + rightSide;
 	}
 	
 	public LPConstraint clone(){

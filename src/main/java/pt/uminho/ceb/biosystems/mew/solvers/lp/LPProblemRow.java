@@ -29,6 +29,7 @@ import java.util.TreeMap;
 
 import pt.uminho.ceb.biosystems.mew.solvers.lp.exceptions.LinearProgrammingTermAlreadyPresentException;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.exceptions.NonExistentLPTermException;
+import pt.uminho.ceb.biosystems.mew.utilities.datastructures.pair.Pair;
 
 
 // this class keeps a row in a LP problem (used for constraints and objective function)
@@ -97,6 +98,17 @@ public class LPProblemRow implements Serializable{
 		int counter = 0;
 		for(Integer i : termList.keySet()){
 			sb.append(termList.get(i));
+			if(counter<termList.size())
+				sb.append(" + ");
+		}
+		return sb.toString();
+	}
+	
+	public String toStringWithNames(Map<Integer,String> indexToIdVarMappings){
+		StringBuilder sb = new StringBuilder();
+		int counter = 0;
+		for(Integer i : termList.keySet()){
+			sb.append(termList.get(i).toStringWithNames(indexToIdVarMappings));
 			if(counter<termList.size())
 				sb.append(" + ");
 		}
