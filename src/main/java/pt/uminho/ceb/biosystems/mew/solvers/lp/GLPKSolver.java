@@ -56,6 +56,7 @@ public class GLPKSolver implements ILPSolver {
 	protected long				totalTime;
 	
 	boolean						computeShadowPrices	= true;
+	boolean						computeReducedCosts= true;
 	
 	boolean						usePreSolver		= false;
 	boolean						useAutoScaling		= false;
@@ -127,7 +128,7 @@ public class GLPKSolver implements ILPSolver {
 		
 		int valueIdx = (MILPProblem.class.isAssignableFrom(problem.getClass())) ? 2 : 3;
 		
-		if (computeShadowPrices) {
+		if (computeShadowPrices || computeReducedCosts) {
 			LPMapVariableValues emptyReduced = new LPMapVariableValues();
 			LPMapVariableValues emptyShadow = new LPMapVariableValues();
 			
@@ -240,6 +241,17 @@ public class GLPKSolver implements ILPSolver {
 	
 	public void setUseAutoScaling(boolean useAutoScaling) {
 		this.useAutoScaling = useAutoScaling;
+	}
+	
+	@Override
+	public boolean getComputeReducedCosts() {
+		return computeReducedCosts;
+	}
+	
+	@Override
+	public void setComputeReducedCosts(boolean computeReducedCosts) {
+		this.computeReducedCosts = computeReducedCosts;
+		
 	}
 	
 	@Override

@@ -123,7 +123,7 @@ public class CPLEXSolver3 implements LPProblemListener, ILPSolver, IQPSolver {
 	protected boolean						_computeShadowPrices	= false;
 	
 	/** Flag controlling computation of reduced costs (constraints) */
-	protected boolean						_computeReducedCosts	= false;
+	protected boolean						_computeReducedCosts	= true;
 	
 	/** Counter for CPLEX number of (re)initializations */
 	protected int							_initializations		= 0;
@@ -1054,7 +1054,7 @@ public class CPLEXSolver3 implements LPProblemListener, ILPSolver, IQPSolver {
 		this._computeShadowPrices = computeShadowPrices;
 	}
 	
-	public void computeReducedCosts(boolean computeReducedCosts) {
+	public void setComputeReducedCosts(boolean computeReducedCosts) {
 		this._computeReducedCosts = computeReducedCosts;
 	}
 	

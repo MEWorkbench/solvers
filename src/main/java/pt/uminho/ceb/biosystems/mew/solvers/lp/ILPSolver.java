@@ -34,4 +34,8 @@ public interface ILPSolver {
 	
 	void saveModelToMPS(String file, boolean includeTime);
 	
+	boolean getComputeReducedCosts();
+	
+	void setComputeReducedCosts(boolean computeReducedCosts);
+	
 }

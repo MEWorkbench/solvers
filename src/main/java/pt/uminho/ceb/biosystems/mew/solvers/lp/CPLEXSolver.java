@@ -109,7 +109,7 @@ public class CPLEXSolver implements ILPSolver,IQPSolver{
 		this.computeShadowPrices = computeShadowPrices;
 	}
 	
-	public void computeReducedCosts(boolean computeReducedCosts) {
+	public void setComputeReducedCosts(boolean computeReducedCosts) {
 		this.computeReducedCosts = computeReducedCosts;
 	}
 

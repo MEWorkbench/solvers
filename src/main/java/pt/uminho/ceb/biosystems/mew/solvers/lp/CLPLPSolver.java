@@ -54,6 +54,7 @@ public class CLPLPSolver implements ILPSolver{
 	protected boolean useAutoScaling = true;
 	
 	boolean computeShadowPrices = true;
+	boolean computereducedCosts = true;
 	
 	protected long timeOut = 10000;
 	
@@ -120,6 +121,7 @@ public class CLPLPSolver implements ILPSolver{
 		try {
 			inputFileProcessor.writeLPFile(mpsInputFile);
 		} catch (IOException e) {
+			GeneralOutputUtils.deleteFile(mpsInputFile);
 			throw new SolverConstructionException(CLPLPSolver.class);
 		}
 		
@@ -127,6 +129,7 @@ public class CLPLPSolver implements ILPSolver{
 			solverOutput = runCLP(mpsInputFile, mpsOutputFile);
 		} catch (SolverDefinitionException e) {
 			GeneralOutputUtils.deleteFile(mpsInputFile);
+			GeneralOutputUtils.deleteFile(mpsOutputFile);
 			throw new SolverDefinitionException(CLPLPSolver.class);
 		}
 		
@@ -136,6 +139,7 @@ public class CLPLPSolver implements ILPSolver{
 			mps_out.parserFile(mpsOutputFile);
 		} catch (IOException e) {
 			GeneralOutputUtils.deleteFile(mpsInputFile);
+			GeneralOutputUtils.deleteFile(mpsOutputFile);
 			throw new InfeasibleProblemException(CLPLPSolver.class);
 		}
 				
@@ -210,5 +214,16 @@ public class CLPLPSolver implements ILPSolver{
 		} else {
 			throw new SolverException(getClass(), new Exception("Problem is null. Impossible to write MPS file."));
 		}
+	}
+
+	@Override
+	public boolean getComputeReducedCosts() {
+		return computereducedCosts;
+	}
+
+	@Override
+	public void setComputeReducedCosts(boolean computeReducedCosts) {
+		this.computereducedCosts = computeReducedCosts;
+		
 	}
 }
