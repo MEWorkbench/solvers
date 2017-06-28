@@ -38,13 +38,11 @@ public class SolverFactory {
 
 	private static SolverFactory instance;
 
-	static public SolverFactory getInstace(){
+	static public SolverFactory getInstance(){
 		if(instance == null)
 			instance = new SolverFactory();
 		return instance;
 	}
-
-
 
 	private Map<String, ISolverBuilder> solvers;
 	private List<String> lpSolvers;
