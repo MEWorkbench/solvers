@@ -32,6 +32,7 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import pt.uminho.ceb.biosystems.mew.solvers.builders.QPGenSolverBuilder;
 import pt.uminho.ceb.biosystems.mew.solvers.fileformats.LPFormatTypes;
 import pt.uminho.ceb.biosystems.mew.solvers.fileformats.LPInputFileFormat;
 import pt.uminho.ceb.biosystems.mew.solvers.fileformats.QuadraticMPSInputFileProcessor;
@@ -87,21 +88,21 @@ public class QPGenSolver implements IQPSolver
 		try {
 			mps.generateMPSFile(mpsFile);
 		} catch (IOException e) {
-			throw new SolverConstructionException(QPGenSolver.class);
+			throw new SolverConstructionException(QPGenSolverBuilder.ID);
 		}
 		
 		try {
 			solverOutput = runQpGen(mpsFile);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			throw new SolverDefinitionException(QPGenSolver.class);
+			throw new SolverDefinitionException(QPGenSolverBuilder.ID);
 		}
 		
 		LPMapVariableValues varValues=null;
 		try {
 			varValues = loadValues(mpsFile+".out");
 		} catch (IOException e) {
-			throw new InfeasibleProblemException(QPGenSolver.class);
+			throw new InfeasibleProblemException(QPGenSolverBuilder.ID);
 		}
 		
 		
@@ -115,7 +116,7 @@ public class QPGenSolver implements IQPSolver
 		
 //		FIXME: read the objective value
 		LPSolution solution =  new LPSolution(problem, varValues, LPSolutionType.OPTIMAL, 0.0);
-		solution.setSolverType(SolverType.QPGEN);
+		solution.setSolverType(QPGenSolverBuilder.ID);
 		solution.setSolverOutput(solverOutput);
 		return solution;
 	}
@@ -206,10 +207,10 @@ public class QPGenSolver implements IQPSolver
 			try {
 				inputFileProcessor.writeLPFile(file);
 			} catch (IOException e) {
-				throw new SolverException(getClass(), e);
+				throw new SolverException(QPGenSolverBuilder.ID, e);
 			}
 		} else {
-			throw new SolverException(getClass(), new Exception("Problem is null. Impossible to write MPS file."));
+			throw new SolverException(QPGenSolverBuilder.ID, new Exception("Problem is null. Impossible to write MPS file."));
 		}
 	}
 }

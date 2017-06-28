@@ -28,6 +28,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.GregorianCalendar;
 
+import pt.uminho.ceb.biosystems.mew.solvers.builders.CLPSolverBuilder;
 import pt.uminho.ceb.biosystems.mew.solvers.fileformats.OutputFileUtils;
 import pt.uminho.ceb.biosystems.mew.solvers.fileformats.QuadraticMPSInputFileProcessor;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.LPMapVariableValues;
@@ -90,14 +91,14 @@ public class CLPQPSolver implements IQPSolver {
 		try {
 			mps.generateMPSFile(mpsInputFile);
 		} catch (IOException e) {
-			throw new SolverConstructionException(CLPQPSolver.class);
+			throw new SolverConstructionException(CLPSolverBuilder.ID);
 		}
 		
 		try {
 			solverOutput = runQPCLP(mpsInputFile, mpsOutputFile);
 		} catch (SolverDefinitionException e) {
 			GeneralOutputUtils.deleteFile(mpsInputFile);
-			throw new SolverDefinitionException(CLPQPSolver.class);
+			throw new SolverDefinitionException(CLPSolverBuilder.ID);
 		}
 		
 		GeneralOutputSolverFile mps_out = OutputFileUtils.createOutputParserCLP(qpproblem);
@@ -106,7 +107,7 @@ public class CLPQPSolver implements IQPSolver {
 			mps_out.parserFile(mpsOutputFile);
 		} catch (IOException e) {
 			GeneralOutputUtils.deleteFile(mpsInputFile);
-			throw new InfeasibleProblemException(CLPQPSolver.class);
+			throw new InfeasibleProblemException(CLPSolverBuilder.ID);
 		}
 		
 		LPMapVariableValues valuesList = new LPMapVariableValues();
@@ -128,7 +129,7 @@ public class CLPQPSolver implements IQPSolver {
 		GeneralOutputUtils.deleteFile(mpsOutputFile);
 		
 		lpSolution.setSolverOutput(solverOutput);
-		lpSolution.setSolverType(SolverType.CLP);
+		lpSolution.setSolverType(CLPSolverBuilder.ID);
 		
 		return lpSolution;
 	}
@@ -155,7 +156,7 @@ public class CLPQPSolver implements IQPSolver {
 	
 			child.destroy();
 		}catch(IOException e){
-			throw new SolverDefinitionException(CLPQPSolver.class);
+			throw new SolverDefinitionException(CLPSolverBuilder.ID);
 		}
 		return solverOutput;
 	}
@@ -179,10 +180,10 @@ public class CLPQPSolver implements IQPSolver {
 			try {
 				inputFileProcessor.writeLPFile(file);
 			} catch (IOException e) {
-				throw new SolverException(getClass(), e);
+				throw new SolverException(CLPSolverBuilder.ID, e);
 			}
 		} else {
-			throw new SolverException(getClass(), new Exception("Problem is null. Impossible to write MPS file."));
+			throw new SolverException(CLPSolverBuilder.ID, new Exception("Problem is null. Impossible to write MPS file."));
 		}
 	}
 }

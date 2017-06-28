@@ -36,7 +36,7 @@ public class LPSolution implements Serializable {
 	protected LPMapVariableValues values;
 	protected LPSolutionType solutionType;
 	protected String solverOutput;
-	protected SolverType solverType;
+	protected String solverType;
 
 	protected Map<String, LPMapVariableValues> perVariableMetrics = null;
 	protected Map<String, LPMapVariableValues> perConstraintMetrics = null;
@@ -85,11 +85,11 @@ public class LPSolution implements Serializable {
 		this.solverOutput = solverOutput;
 	}
 
-	public SolverType getSolverType() {
+	public String getSolverType() {
 		return solverType;
 	}
 
-	public void setSolverType(SolverType solverType) {
+	public void setSolverType(String solverType) {
 		this.solverType = solverType;
 	}
 

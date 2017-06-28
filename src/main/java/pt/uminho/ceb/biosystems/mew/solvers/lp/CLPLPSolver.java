@@ -190,7 +190,7 @@ public class CLPLPSolver implements ILPSolver{
 			
 			child.destroy();
 		} catch (IOException e) {
-			throw new SolverDefinitionException(CLPLPSolver.class);
+			throw new SolverDefinitionException(CLPSolverBuilder.ID);
 		}
 		return solverOutput;
 	}
@@ -209,10 +209,10 @@ public class CLPLPSolver implements ILPSolver{
 			try {
 				inputFileProcessor.writeLPFile(file);
 			} catch (IOException e) {
-				throw new SolverException(getClass(), e);
+				throw new SolverException(CLPSolverBuilder.ID, e);
 			}
 		} else {
-			throw new SolverException(getClass(), new Exception("Problem is null. Impossible to write MPS file."));
+			throw new SolverException(CLPSolverBuilder.ID, new Exception("Problem is null. Impossible to write MPS file."));
 		}
 	}
 

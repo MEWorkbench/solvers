@@ -27,6 +27,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import pt.uminho.ceb.biosystems.mew.solvers.builders.CLPSolverBuilder;
+import pt.uminho.ceb.biosystems.mew.solvers.builders.GLPKBinSolverBuilder;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.ILPSolver;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.LPProblem;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.exceptions.UnregisteredSolverIDException;
@@ -39,8 +41,12 @@ public class SolverFactory {
 	private static SolverFactory instance;
 
 	static public SolverFactory getInstance(){
-		if(instance == null)
+		if(instance == null){
 			instance = new SolverFactory();
+			instance.registSolver(new GLPKBinSolverBuilder());
+			instance.registSolver(new CLPSolverBuilder());
+		}
+		
 		return instance;
 	}
 

@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import pt.uminho.ceb.biosystems.mew.solvers.builders.GLPKBinSolverBuilder;
 import pt.uminho.ceb.biosystems.mew.solvers.fileformats.LPFormatTypes;
 import pt.uminho.ceb.biosystems.mew.solvers.fileformats.LPInputFileFormat;
 import pt.uminho.ceb.biosystems.mew.solvers.fileformats.MPSInputFormat;
@@ -106,7 +107,7 @@ public class GLPKSolver implements ILPSolver {
 			solverOutput = runGlpk(mpsInputFile, mpsOutputFile);
 		} catch (SolverDefinitionException e) {
 			GeneralOutputUtils.deleteFile(mpsInputFile);
-			throw new SolverDefinitionException(GLPKSolver.class);
+			throw new SolverDefinitionException(GLPKBinSolverBuilder.ID);
 		}
 		
 		if (debug) {
@@ -120,7 +121,7 @@ public class GLPKSolver implements ILPSolver {
 			mps_out.parserFile(mpsOutputFile);
 		} catch (Exception e) {
 			GeneralOutputUtils.deleteFile(mpsInputFile);
-			throw new InfeasibleProblemException(GLPKSolver.class);
+			throw new InfeasibleProblemException(GLPKBinSolverBuilder.ID);
 		}
 		
 		LPMapVariableValues emptyVars = new LPMapVariableValues();
@@ -150,7 +151,7 @@ public class GLPKSolver implements ILPSolver {
 		}
 		
 		lpSolution.setSolverOutput(solverOutput);
-		lpSolution.setSolverType(SolverType.GLPK);
+		lpSolution.setSolverType(GLPKBinSolverBuilder.ID);
 		return lpSolution;
 	}
 	
@@ -176,7 +177,7 @@ public class GLPKSolver implements ILPSolver {
 			child.destroy();
 			
 		} catch (IOException e) {
-			throw new SolverDefinitionException(GLPKSolver.class);
+			throw new SolverDefinitionException(GLPKBinSolverBuilder.ID);
 		}
 		
 		return solverOutput;
@@ -267,10 +268,10 @@ public class GLPKSolver implements ILPSolver {
 			try {
 				inputFileProcessor.writeLPFile(file);
 			} catch (IOException e) {
-				throw new SolverException(getClass(), e);
+				throw new SolverException(GLPKBinSolverBuilder.ID, e);
 			}
 		} else {
-			throw new SolverException(getClass(), new Exception("Problem is null. Impossible to write MPS file."));
+			throw new SolverException(GLPKBinSolverBuilder.ID, new Exception("Problem is null. Impossible to write MPS file."));
 		}
 	}
 }

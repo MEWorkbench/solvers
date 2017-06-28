@@ -34,7 +34,7 @@ public class CLPSolverBuilder implements ISolverBuilder{
 
 	@Override
 	public ILPSolver lpSolver(LPProblem problem) {
-		return new CLPLPSolver(problem);
+		return new CLPLPSolver(problem, 300);
 	}
 
 	@Override

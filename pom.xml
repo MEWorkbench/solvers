@@ -28,11 +28,6 @@
 			<artifactId>mew-utilities</artifactId>
 			<version>0.0.2-SNAPSHOT</version>
 		</dependency>
-		<dependency>
-			<groupId>com.ibm.ilog</groupId>
-			<artifactId>cplex</artifactId>
-			<version>1.2.5</version>
-		</dependency>
 	</dependencies>
 
 	<build>
