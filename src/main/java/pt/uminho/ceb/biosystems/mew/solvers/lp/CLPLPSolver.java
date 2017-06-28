@@ -28,7 +28,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.GregorianCalendar;
 
-import pt.uminho.ceb.biosystems.mew.solvers.SolverType;
+import pt.uminho.ceb.biosystems.mew.solvers.builders.CLPSolverBuilder;
 import pt.uminho.ceb.biosystems.mew.solvers.fileformats.LPInputFileFormat;
 import pt.uminho.ceb.biosystems.mew.solvers.fileformats.MPSInputFormat;
 import pt.uminho.ceb.biosystems.mew.solvers.fileformats.OutputFileUtils;
@@ -122,7 +122,7 @@ public class CLPLPSolver implements ILPSolver{
 			inputFileProcessor.writeLPFile(mpsInputFile);
 		} catch (IOException e) {
 			GeneralOutputUtils.deleteFile(mpsInputFile);
-			throw new SolverConstructionException(CLPLPSolver.class);
+			throw new SolverConstructionException(CLPSolverBuilder.ID);
 		}
 		
 		try {
@@ -130,7 +130,7 @@ public class CLPLPSolver implements ILPSolver{
 		} catch (SolverDefinitionException e) {
 			GeneralOutputUtils.deleteFile(mpsInputFile);
 			GeneralOutputUtils.deleteFile(mpsOutputFile);
-			throw new SolverDefinitionException(CLPLPSolver.class);
+			throw new SolverDefinitionException(CLPSolverBuilder.ID);
 		}
 		
 		GeneralOutputSolverFile mps_out = OutputFileUtils.createOutputParserCLP(lpProblem);
@@ -140,7 +140,7 @@ public class CLPLPSolver implements ILPSolver{
 		} catch (IOException e) {
 			GeneralOutputUtils.deleteFile(mpsInputFile);
 			GeneralOutputUtils.deleteFile(mpsOutputFile);
-			throw new InfeasibleProblemException(CLPLPSolver.class);
+			throw new InfeasibleProblemException("CLP");
 		}
 				
 		LPMapVariableValues valuesList = new LPMapVariableValues();
@@ -163,7 +163,7 @@ public class CLPLPSolver implements ILPSolver{
 		GeneralOutputUtils.deleteFile(mpsOutputFile);
 		
 		lpSolution.setSolverOutput(solverOutput);
-		lpSolution.setSolverType(SolverType.CLP);
+		lpSolution.setSolverType(CLPSolverBuilder.ID);
 		return lpSolution;
 	}
 	

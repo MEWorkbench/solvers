@@ -12,16 +12,16 @@ public class InfeasibleProblemException extends SolverException {
 	private static final long	serialVersionUID	= 1L;
 
 	
-	public InfeasibleProblemException(Class<?> solver) {
+	public InfeasibleProblemException(String solver) {
 		super(solver);
 	}
 	
-	public InfeasibleProblemException(Class<?> solver, Exception e){
+	public InfeasibleProblemException(String solver, Exception e){
 		super(solver,e);
 	}
 
 	public String getSolver() {
-		return solver.getSimpleName();
+		return solver;
 	}
 
 }

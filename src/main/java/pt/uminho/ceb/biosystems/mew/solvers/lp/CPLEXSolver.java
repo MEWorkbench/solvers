@@ -22,6 +22,11 @@
  */
 package pt.uminho.ceb.biosystems.mew.solvers.lp;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.util.Set;
+
 import ilog.concert.IloException;
 import ilog.concert.IloLinearNumExpr;
 import ilog.concert.IloNumExpr;
@@ -31,13 +36,6 @@ import ilog.concert.IloObjective;
 import ilog.concert.IloObjectiveSense;
 import ilog.concert.IloRange;
 import ilog.cplex.IloCplex;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
-import java.util.Set;
-
-import pt.uminho.ceb.biosystems.mew.solvers.SolverType;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.exceptions.InfeasibleProblemException;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.exceptions.SolverConstructionException;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.exceptions.SolverDefinitionException;

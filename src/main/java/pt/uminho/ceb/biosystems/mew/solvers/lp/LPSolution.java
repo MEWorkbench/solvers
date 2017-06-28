@@ -28,8 +28,6 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import pt.uminho.ceb.biosystems.mew.solvers.SolverType;
-
 public class LPSolution implements Serializable {
 
 	private static final long serialVersionUID = 1L;

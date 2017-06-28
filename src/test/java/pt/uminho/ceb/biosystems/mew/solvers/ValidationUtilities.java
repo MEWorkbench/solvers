@@ -1,6 +1,5 @@
 package pt.uminho.ceb.biosystems.mew.solvers;
 
-import pt.uminho.ceb.biosystems.mew.solvers.SolverType;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.CLPLPSolver;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.CPLEXSolver;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.GLPKSolver;

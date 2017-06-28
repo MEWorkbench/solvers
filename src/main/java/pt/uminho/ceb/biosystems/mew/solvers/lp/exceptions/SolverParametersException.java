@@ -15,14 +15,14 @@ public class SolverParametersException extends SolverException {
 	public String value;
 	public String kclass;
 	
-	public SolverParametersException(Class<?> solver, String param, String value, String kclass) {
+	public SolverParametersException(String solver, String param, String value, String kclass) {
 		super(solver);
 		this.param = param;
 		this.value = value;
 		this.kclass = kclass;
 	}
 	
-	public SolverParametersException(Class<?> solver, Exception e, String param, String value, String kclass) {
+	public SolverParametersException(String solver, Exception e, String param, String value, String kclass) {
 		super(solver,e);
 		this.param = param;
 		this.value = value;
@@ -30,7 +30,7 @@ public class SolverParametersException extends SolverException {
 	}
 
 	public String getSolver() {
-		return solver.getSimpleName();
+		return solver;
 	}
 	
 	@Override

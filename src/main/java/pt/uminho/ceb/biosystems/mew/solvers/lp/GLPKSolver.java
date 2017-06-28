@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import pt.uminho.ceb.biosystems.mew.solvers.SolverType;
 import pt.uminho.ceb.biosystems.mew.solvers.fileformats.LPFormatTypes;
 import pt.uminho.ceb.biosystems.mew.solvers.fileformats.LPInputFileFormat;
 import pt.uminho.ceb.biosystems.mew.solvers.fileformats.MPSInputFormat;

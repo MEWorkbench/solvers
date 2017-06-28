@@ -29,7 +29,6 @@ import java.util.TreeMap;
 
 import pt.uminho.ceb.biosystems.mew.solvers.lp.exceptions.LinearProgrammingTermAlreadyPresentException;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.exceptions.NonExistentLPTermException;
-import pt.uminho.ceb.biosystems.mew.utilities.datastructures.pair.Pair;
 
 
 // this class keeps a row in a LP problem (used for constraints and objective function)

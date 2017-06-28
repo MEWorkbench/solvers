@@ -18,6 +18,15 @@
  */
 package pt.uminho.ceb.biosystems.mew.solvers.persistent;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.PrintStream;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import ilog.concert.IloAddable;
 import ilog.concert.IloException;
 import ilog.concert.IloLinearNumExpr;
@@ -28,18 +37,6 @@ import ilog.concert.IloObjective;
 import ilog.concert.IloObjectiveSense;
 import ilog.concert.IloRange;
 import ilog.cplex.IloCplex;
-
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.PrintStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import pt.uminho.ceb.biosystems.mew.solvers.SolverType;
-import pt.uminho.ceb.biosystems.mew.solvers.lp.CplexParamConfiguration;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.ILPSolver;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.LPConstraint;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.LPConstraintType;

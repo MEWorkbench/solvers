@@ -28,7 +28,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.GregorianCalendar;
 
-import pt.uminho.ceb.biosystems.mew.solvers.SolverType;
 import pt.uminho.ceb.biosystems.mew.solvers.fileformats.OutputFileUtils;
 import pt.uminho.ceb.biosystems.mew.solvers.fileformats.QuadraticMPSInputFileProcessor;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.LPMapVariableValues;

@@ -6,14 +6,14 @@ public class SolverException extends RuntimeException {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	protected Class<?> solver;
+	protected String solver;
 	
-	public SolverException(Class<?> solver, Exception e){
+	public SolverException(String solver, Exception e){
 		super(e);
 		this.solver = solver;
 	}
 	
-	public SolverException(Class<?> solver) {
+	public SolverException(String solver) {
 		super();
 		this.solver = solver;
 	}

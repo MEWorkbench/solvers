@@ -9,16 +9,16 @@ import pt.uminho.ceb.biosystems.mew.solvers.lp.SolverException;
  */
 public class SolverConstructionException extends SolverException{
 
-	public SolverConstructionException(Class<?> solver) {
+	public SolverConstructionException(String solver) {
 		super(solver);
 	}
 
-	public SolverConstructionException(Class<?> solver, Exception e) {
+	public SolverConstructionException(String solver, Exception e) {
 		super(solver, e);
 	}
 
 	public String getSolver() {
-		return solver.getSimpleName();
+		return solver;
 	}
 
 }
