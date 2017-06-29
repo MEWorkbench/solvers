@@ -1,70 +1,61 @@
 package pt.uminho.ceb.biosystems.mew.solvers;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import junit.framework.TestCase;
+import pt.uminho.ceb.biosystems.mew.solvers.builders.CLPSolverBuilder;
+import pt.uminho.ceb.biosystems.mew.solvers.builders.GLPKBinSolverBuilder;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.CLPLPSolver;
-import pt.uminho.ceb.biosystems.mew.solvers.lp.CPLEXSolver;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.GLPKSolver;
+import pt.uminho.ceb.biosystems.mew.solvers.lp.ILPSolver;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.LPProblem;
-import pt.uminho.ceb.biosystems.mew.solvers.lp.SolverException;
-import pt.uminho.ceb.biosystems.mew.solvers.lp.exceptions.SolverDefinitionException;
-import pt.uminho.ceb.biosystems.mew.solvers.persistent.CPLEXSolver3;
+import pt.uminho.ceb.biosystems.mew.solvers.lp.LPSolution;
+import pt.uminho.ceb.biosystems.mew.solvers.lp.LPSolutionType;
+import pt.uminho.ceb.biosystems.mew.solvers.lp.exceptions.InfeasibleProblemException;
+import pt.uminho.ceb.biosystems.mew.solvers.lp.exceptions.LinearProgrammingTermAlreadyPresentException;
 
 public class SolversTests extends TestCase {
 
-	@Test
-	public void testCPLEX3SolverDefinition(){
-		CPLEXSolver3 cplex = new CPLEXSolver3(new LPProblem());
-		try{
-			cplex.solve();
-		}catch(Error e){
-			throw new SolverDefinitionException(CPLEXSolver3.class);
-		}catch(Exception e){
-			throw new SolverException(CPLEXSolver3.class, e);
-		}
-	}
-	
-	@Test
-	public void testCPLEXSolverDefinition(){
-		CPLEXSolver cplex = new CPLEXSolver(new LPProblem());
-		try{
-			cplex.solve();
-		}catch(Error e){
-			throw new SolverDefinitionException(CPLEXSolver.class);
-		}catch(Exception e){
-			if(SolverDefinitionException.class.isAssignableFrom(e.getClass()))
-				throw e;
-			throw new SolverException(CPLEXSolver.class, e);
-		}
-	}
 	
 	@Test
 	public void testCLPLPSolverDefinition(){
-		CLPLPSolver clplp = new CLPLPSolver(new LPProblem());
-		try{
-			clplp.solve();
-		}catch(Error e){
-			throw new SolverDefinitionException(CLPLPSolver.class);
-		}catch(Exception e){
-			if(SolverDefinitionException.class.isAssignableFrom(e.getClass()))
-				throw e;
-			throw new SolverException(CLPLPSolver.class, e);
-		}
+		assertLPProblem(CLPSolverBuilder.ID);
 	}
 	
 	@Test
 	public void testGLPKSolverDefinition(){
-		GLPKSolver glpk = new GLPKSolver(new LPProblem());
-		try{
-			glpk.solve();
-		}catch(Error e){
-			throw new SolverDefinitionException(GLPKSolver.class);
-		}catch(Exception e){
-			if(SolverDefinitionException.class.isAssignableFrom(e.getClass()))
-				throw e;
-			throw new SolverException(GLPKSolver.class, e);
-		}
+		assertLPProblem(GLPKBinSolverBuilder.ID);
+	}
+	
+	
+	@Test
+	public void testCLPLPInfeasible(){
+		assertLPInfeasible(CLPSolverBuilder.ID);
+	}
+	
+	@Test
+	public void testGLPKLPInfeasible(){
+		assertLPInfeasible(GLPKBinSolverBuilder.ID);
 	}
 
+	public static void assertLPProblem(String id){
+		ILPSolver a = SolverFactory.getInstance().lpSolver(id, Problems.getLPProblem());
+		LPSolution res = a.solve();
+		Assert.assertNotNull(res);
+	}
+	
+	public static void assertLPInfeasible(String id){
+		ILPSolver a = SolverFactory.getInstance().lpSolver(id, Problems.getInfeasibleLPProblem());
+		LPSolution res = null;
+		try {
+			res = a.solve();
+		} catch (InfeasibleProblemException e) {
+			e.printStackTrace();
+			return;
+		}
+		
+		Assert.assertNotNull(res);
+		Assert.assertTrue(res.getSolutionType().equals(LPSolutionType.INFEASIBLE));
+	}
 }
