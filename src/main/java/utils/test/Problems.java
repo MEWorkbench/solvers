@@ -1,4 +1,4 @@
-package pt.uminho.ceb.biosystems.mew.solvers;
+package utils.test;
 
 import pt.uminho.ceb.biosystems.mew.solvers.lp.LPConstraintType;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.LPProblem;

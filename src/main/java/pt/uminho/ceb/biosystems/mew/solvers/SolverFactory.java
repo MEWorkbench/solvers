@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import pt.uminho.ceb.biosystems.mew.solvers.builders.CLPSolverBuilder;
 import pt.uminho.ceb.biosystems.mew.solvers.builders.GLPKBinSolverBuilder;
@@ -81,6 +82,10 @@ public class SolverFactory {
 	public List<String> milpSolvers() { return milpSolvers; }
 
 	public List<String> qpSolvers() { return qpSolvers; }
+	
+	public Set<String> allSolvers(){
+		return solvers.keySet();
+	}
 
 	
 	private ISolverBuilder get(String id) {
@@ -106,4 +111,6 @@ public class SolverFactory {
 	public IQPSolver qpSolver(String id, QPProblem problem){
 		return get(id).qpSolver(problem);
 	}
+	
+	
 }
