@@ -6,14 +6,10 @@ import org.junit.Test;
 import junit.framework.TestCase;
 import pt.uminho.ceb.biosystems.mew.solvers.builders.CLPSolverBuilder;
 import pt.uminho.ceb.biosystems.mew.solvers.builders.GLPKBinSolverBuilder;
-import pt.uminho.ceb.biosystems.mew.solvers.lp.CLPLPSolver;
-import pt.uminho.ceb.biosystems.mew.solvers.lp.GLPKSolver;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.ILPSolver;
-import pt.uminho.ceb.biosystems.mew.solvers.lp.LPProblem;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.LPSolution;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.LPSolutionType;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.exceptions.InfeasibleProblemException;
-import pt.uminho.ceb.biosystems.mew.solvers.lp.exceptions.LinearProgrammingTermAlreadyPresentException;
 
 public class SolversTests extends TestCase {
 
