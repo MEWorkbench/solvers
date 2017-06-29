@@ -32,6 +32,7 @@ import pt.uminho.ceb.biosystems.mew.solvers.fileformats.LPInputFileFormat;
 import pt.uminho.ceb.biosystems.mew.solvers.fileformats.MPSInputFormat;
 import pt.uminho.ceb.biosystems.mew.solvers.fileformats.OutputFileUtils;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.exceptions.InfeasibleProblemException;
+import pt.uminho.ceb.biosystems.mew.solvers.lp.exceptions.ParsingMPSFileException;
 import pt.uminho.ceb.biosystems.mew.solvers.lp.exceptions.SolverDefinitionException;
 import pt.uminho.ceb.biosystems.mew.solvers.parser.GeneralOutputSolverFile;
 import pt.uminho.ceb.biosystems.mew.solvers.parser.GeneralOutputUtils;
@@ -121,7 +122,8 @@ public class GLPKSolver implements ILPSolver {
 			mps_out.parserFile(mpsOutputFile);
 		} catch (Exception e) {
 			GeneralOutputUtils.deleteFile(mpsInputFile);
-			throw new InfeasibleProblemException(GLPKBinSolverBuilder.ID);
+			GeneralOutputUtils.deleteFile(mpsOutputFile);
+			throw new ParsingMPSFileException(GLPKBinSolverBuilder.ID, e);
 		}
 		
 		LPMapVariableValues emptyVars = new LPMapVariableValues();
