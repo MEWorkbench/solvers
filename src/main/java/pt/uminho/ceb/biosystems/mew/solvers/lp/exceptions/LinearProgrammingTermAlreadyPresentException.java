@@ -22,7 +22,7 @@
  */
 package pt.uminho.ceb.biosystems.mew.solvers.lp.exceptions;
 
-public class LinearProgrammingTermAlreadyPresentException extends Exception {
+public class LinearProgrammingTermAlreadyPresentException extends RuntimeException {
 
 	private static final long serialVersionUID = 1L;
 	
