@@ -4,7 +4,7 @@
 
 	<groupId>pt.uminho.ceb.biosystems.mew</groupId>
 	<artifactId>mew-solvers</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>0.0.3-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>solvers</name>
@@ -14,7 +14,13 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
+		<cplex.jar.path>define your path</cplex.jar.path>
+		<meworkbench.version>0.0.3-SNAPSHOT</meworkbench.version>
 	</properties>
+	
+	<scm>
+		<developerConnection>${project.scm.url}</developerConnection>
+	</scm>
 
 	<dependencies>
 		<dependency>
@@ -26,12 +32,14 @@
 		<dependency>
 			<groupId>pt.uminho.ceb.biosystems.mew</groupId>
 			<artifactId>mew-utilities</artifactId>
-			<version>0.0.2-SNAPSHOT</version>
+			<version>${meworkbench.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.ibm.ilog</groupId>
 			<artifactId>cplex</artifactId>
 			<version>1.2.5</version>
+			<scope>system</scope>
+			<systemPath>${cplex.jar.path}</systemPath>
 		</dependency>
 	</dependencies>
 
@@ -63,27 +71,5 @@
 			</plugin>
 		</plugins>
 	</build>
-
-	<repositories>
-		<repository>
-			<id>biosystems-releases</id>
-			<url>http://193.137.11.210/nexus/content/repositories/biosystems-releases</url>
-		</repository>
-		<repository>
-			<id>3rd-party</id>
-			<url>http://193.137.11.210/nexus/content/repositories/thirdparty</url>
-		</repository>
-	</repositories>
-
-	<distributionManagement>
-		<snapshotRepository>
-			<id>biosystems-snapshots</id>
-			<url>http://193.137.11.210/nexus/content/repositories/biosystems-snapshots</url>
-		</snapshotRepository>
-		<repository>
-			<id>biosystems-releases</id>
-			<url>http://193.137.11.210/nexus/content/repositories/biosystems-releases</url>
-		</repository>
-	</distributionManagement>
 
 </project>
