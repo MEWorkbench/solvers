@@ -55,7 +55,7 @@
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
 		<cplex.jar.path>define your path</cplex.jar.path>
-		<meworkbench.version>0.0.3</meworkbench.version>
+		<meworkbench.version>0.0.4-SNAPSHOT</meworkbench.version>
 	</properties>
 	
 	<scm>
