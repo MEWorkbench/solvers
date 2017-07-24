@@ -1,20 +1,68 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>pt.uminho.ceb.biosystems.mew</groupId>
 	<artifactId>mew-solvers</artifactId>
-	<version>0.0.2-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
 	<name>solvers</name>
-	<url>http://maven.apache.org</url>
+	<description>Solvers for the MEWorkbench</description>
+	<url>https://github.com/MEWorkbench/solvers</url>
+	
+	<developers>
+		<developer>
+			<name>Paulo Maia</name>
+			<email>pmaia@silicolife.com</email>
+			<organization>SilicoLife Lda</organization>
+			<organizationUrl>http://www.silicolife.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Pedro Evangelista</name>
+			<email>pevangelista@silicolife.com</email>
+			<organization>SilicoLife Lda</organization>
+			<organizationUrl>http://www.silicolife.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Paulo Vilaca</name>
+			<email>hgiesteira@silicolife.com</email>
+			<organization>SilicoLife Lda</organization>
+			<organizationUrl>http://www.silicolife.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Hugo Giesteira</name>
+			<email>hgiesteira@silicolife.com</email>
+			<organization>SilicoLife Lda</organization>
+			<organizationUrl>http://www.silicolife.com</organizationUrl>
+		</developer>
+		<developer>
+			<name>Miguel Rocha</name>
+			<email>mrocha@di.uminho.pt</email>
+			<organization>University of Minho</organization>
+			<organizationUrl>https://www.uminho.pt</organizationUrl>
+		</developer>
+	</developers>
+
+	<licenses>
+		<license>
+			<name>LGPLv2.1</name>
+			<url>https://www.gnu.org/licenses/lgpl-2.1.html</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.7</maven.compiler.source>
 		<maven.compiler.target>1.7</maven.compiler.target>
+		<project.sign.skip>true</project.sign.skip>
+		<meworkbench.version>1.0.0-SNAPSHOT</meworkbench.version>
 	</properties>
+	
+	<scm>
+		<developerConnection>${project.scm.devcon}</developerConnection>
+		<url>https://github.com/MEWorkbench/solvers</url>
+	</scm>
 
 	<dependencies>
 		<dependency>
@@ -25,7 +73,7 @@
 		<dependency>
 			<groupId>pt.uminho.ceb.biosystems.mew</groupId>
 			<artifactId>mew-utilities</artifactId>
-			<version>0.0.2-SNAPSHOT</version>
+			<version>${meworkbench.version}</version>
 		</dependency>
 	</dependencies>
 
@@ -52,6 +100,22 @@
 						<goals>
 							<goal>jar</goal>
 						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-gpg-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>sign-artifacts</id>
+						<phase>verify</phase>
+						<goals>
+							<goal>sign</goal>
+						</goals>
+						<configuration>
+							<skip>${project.sign.skip}</skip>
+						</configuration>
 					</execution>
 				</executions>
 			</plugin>
