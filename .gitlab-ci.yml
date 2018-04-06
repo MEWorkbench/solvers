@@ -46,5 +46,5 @@ maven_deploy:
     - ./jfrog rt mvn "clean verify gpg:sign install -DadditionalJOption=-Xdoclint:none" configuration.yml --build-name=solvers_gitlabci_build --build-number=$CI_JOB_ID
     - ./jfrog rt bce solvers_gitlabci_build $CI_JOB_ID
     - ./jfrog rt bp solvers_gitlabci_build $CI_JOB_ID
-#  only:
-#    - master
+  only:
+    - master
