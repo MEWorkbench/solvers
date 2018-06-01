@@ -10,7 +10,6 @@ package pt.uminho.ceb.biosystems.mew.solvers.persistent.listener;
  * Useful for Linear solvers such as CPLEX
  * 
  * @author pmaia
- * @date May 5, 2014
  * @version 0.2
  * @since metabolic3 persistent
  */
