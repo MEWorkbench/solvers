@@ -1,4 +1,3 @@
-source build/mew.version.conf
 DEPLOYMENT_REPO_ID="oss.sonatype.org"
 
 

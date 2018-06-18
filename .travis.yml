@@ -6,6 +6,7 @@ cache:
 deploy:
     provider: script
     script:
+        - source build/mew.version.conf
         - build/deploy.sh $TRAVIS_BRANCH
     on:
         all_branches: true
