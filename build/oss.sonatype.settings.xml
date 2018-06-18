@@ -44,6 +44,6 @@
 		</profile>
 	</profiles>
 	<activeProfiles>
-		<activeProfile>nexus</activeProfile>
+		<activeProfile>oss.sonatype</activeProfile>
 	</activeProfiles>
 </settings>
