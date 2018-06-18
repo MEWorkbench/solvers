@@ -41,7 +41,6 @@ import pt.uminho.ceb.biosystems.mew.solvers.persistent.listener.ObjectiveSenseCh
  * Class to handle a generic purpose linear programming problem.
  * 
  * @author mrocha, pmaia (updates)
- * @date May 5, 2014 (updated)
  * @version 1.2
  * @since metabolic3 persistent
  */
