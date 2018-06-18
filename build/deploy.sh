@@ -1,3 +1,4 @@
+MEWORKBENCH_VERSION=1.0.3
 DEPLOYMENT_REPO_ID="oss.sonatype.org"
 
 
