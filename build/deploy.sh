@@ -1,5 +1,3 @@
-MEWORKBENCH_VERSION=1.0.3
-
 
 #This variable must be iqual to id in distributionManagement.repository/snapshotRepository on pom.xml
 DEPLOYMENT_REPO_ID="oss.sonatype.org"
