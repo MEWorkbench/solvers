@@ -128,8 +128,8 @@
 
 <!-- 	<repositories> -->
 <!-- 		<repository> -->
-<!-- 			<id>my-repo1</id> -->
-<!-- 			<name>your custom repo</name> -->
+<!-- 			<id>snapshots</id> -->
+<!-- 			<name>maven snapshots repo</name> -->
 <!-- 			<url>https://oss.sonatype.org/content/repositories/snapshots</url> -->
 <!-- 		</repository> -->
 <!-- 	</repositories> -->
